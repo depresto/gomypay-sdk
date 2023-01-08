@@ -1,10 +1,7 @@
 export type GomypayPaymentParams = {
-  Send_Type?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
-  Pay_Mode_No?: 2
-  CustomerId?: string
+  Send_Type: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
   Order_No?: string
-  Amount?: number
-  TransCode?: '00'
+  Amount: number
   Buyer_Name?: string
   Buyer_Telm?: string
   Buyer_Mail?: string
@@ -15,7 +12,6 @@ export type GomypayPaymentParams = {
   Installment?: number
   Return_url?: string
   Callback_Url?: string
-  e_return?: 1
 };
 
 export type GomypayResultDataProps = {
