@@ -40,7 +40,6 @@ class GomypayClient {
     html.push(`<input name='CustomerId' value='${this.customerId}'>`);
     html.push(`<input name='Str_Check' value='${this.strCheck}'>`);
     html.push(`<input name='Order_No' value='${params.Order_No}'>`);
-    html.push("<input name='e_return' value='1'>");
 
     html.push(
       `<input name='TransMode' value='${
@@ -66,10 +65,14 @@ class GomypayClient {
     if (params.Buyer_Memo)
       html.push(`<input name='Buyer_Memo' value='${params.Buyer_Memo}'>`);
 
-    if (params.Return_url)
-      html.push(`<input name='Return_url' value='${params.Return_url}'>`);
     if (params.Callback_Url)
       html.push(`<input name='Callback_Url' value='${params.Callback_Url}'>`);
+
+    if (params.Return_url) {
+      html.push(`<input name='Return_url' value='${params.Return_url}'>`);
+    } else {
+      html.push("<input name='e_return' value='1'>");
+    }
 
     html.push("</form>");
     html.push("<script>");
@@ -85,7 +88,6 @@ class GomypayClient {
     searchParams.append("CustomerId", this.customerId);
     searchParams.append("Str_Check", this.strCheck);
     searchParams.append("Order_No", params.Order_No ?? "");
-    searchParams.append("e_return", "1");
 
     searchParams.append(
       "TransMode",
@@ -104,9 +106,14 @@ class GomypayClient {
     if (params.Buyer_Mail) searchParams.append("Buyer_Mail", params.Buyer_Mail);
     if (params.Buyer_Memo) searchParams.append("Buyer_Memo", params.Buyer_Memo);
 
-    if (params.Return_url) searchParams.append("Return_url", params.Return_url);
     if (params.Callback_Url)
       searchParams.append("Callback_Url", params.Callback_Url);
+
+    if (params.Return_url) {
+      searchParams.append("Return_url", params.Return_url);
+    } else {
+      searchParams.append("e_return", "1");
+    }
 
     return `${this.paymentUrl}?${searchParams.toString()}`;
   }
@@ -121,7 +128,6 @@ class GomypayClient {
     formData.append("CustomerId", this.customerId);
     formData.append("Str_Check", this.strCheck);
     formData.append("Order_No", params.Order_No);
-    formData.append("e_return", "1");
 
     formData.append(
       "TransMode",
@@ -140,9 +146,14 @@ class GomypayClient {
     if (params.Buyer_Mail) formData.append("Buyer_Mail", params.Buyer_Mail);
     if (params.Buyer_Memo) formData.append("Buyer_Memo", params.Buyer_Memo);
 
-    if (params.Return_url) formData.append("Return_url", params.Return_url);
     if (params.Callback_Url)
       formData.append("Callback_Url", params.Callback_Url);
+
+    if (params.Return_url) {
+      formData.append("Return_url", params.Return_url);
+    } else {
+      formData.append("e_return", "1");
+    }
 
     const { data } = await axios({
       method: "post",
